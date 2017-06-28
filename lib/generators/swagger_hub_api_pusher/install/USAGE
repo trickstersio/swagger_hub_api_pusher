@@ -1,0 +1,8 @@
+Description:
+  Add initializer to config/initializers for SwaggerHubApiPusher
+
+Example:
+  rails generate swagger_hub_api_pusher:install
+
+  This will create:
+    config/initializers/swagger_hub_api_pusher.rb
