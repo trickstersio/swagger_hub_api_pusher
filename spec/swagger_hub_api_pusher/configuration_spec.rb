@@ -27,15 +27,15 @@ describe SwaggerHubApiPusher::Configuration do
   describe '#valid?' do
     subject { config.valid? }
 
-    context 'when all attributes presents' do
-      before do
-        config.owner = 'owner'
-        config.api_name = 'api_name'
-        config.api_key = 'api_key'
-        config.version = 'version'
-        config.swagger_file = 'swagger_file'
-      end
+    before do
+      config.owner = 'owner'
+      config.api_name = 'api_name'
+      config.api_key = 'api_key'
+      config.version = 'version'
+      config.swagger_file = 'spec/fixtures/swagger.json'
+    end
 
+    context 'when all attributes are valid' do
       it { is_expected.to be true }
       it 'does not set errors_messages' do
         subject
@@ -43,11 +43,22 @@ describe SwaggerHubApiPusher::Configuration do
       end
     end
 
+    context 'when swagger_file not found' do
+      before do
+        config.swagger_file = 'spec/fixtures/other_swagger.json'
+      end
+
+      it { is_expected.to be false }
+      it 'sets errors_messages for swagger_file' do
+        subject
+        expect(config.errors_messages).to eq 'swagger_file not found'
+      end
+    end
+
     context 'when some of attributes are blank' do
       before do
-        config.api_name = 'api_name'
-        config.api_key = 'api_key'
-        config.version = 'version'
+        config.owner = nil
+        config.swagger_file = nil
       end
 
       it { is_expected.to be false }
