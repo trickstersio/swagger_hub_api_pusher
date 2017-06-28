@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Push swagger.json to SwaggerHub API"
   spec.description   = "Rake task for pushing swagger.json to SwaggerHub API"
-  spec.homepage      = "https://github.com/piton4eg/swagger_hub_api_pusher"
+  spec.homepage      = "https://github.com/trickstersio/swagger_hub_api_pusher"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

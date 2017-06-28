@@ -20,6 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
+Run the install generator:
+
+    $ rails generate swagger_hub_api_pusher:install
+
+It will create `config/initializers/swagger_hub_api_pusher.rb` (add your settings from SwaggerHub API).
+
+Run rake task for push you `swagger.json` to SwaggerHub:
+
     $ rake swagger:push
 
 
@@ -31,7 +39,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/piton4eg/swagger_hub_api_pusher.
+Bug reports and pull requests are welcome on GitHub at https://github.com/trickstersio/swagger_hub_api_pusher.
 
 
 ## License
