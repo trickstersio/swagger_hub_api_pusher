@@ -1,6 +1,7 @@
 # SwaggerHubApiPusher
 
 [![Gem Version](https://badge.fury.io/rb/swagger_hub_api_pusher.svg)](https://badge.fury.io/rb/swagger_hub_api_pusher)
+[![Build Status](https://travis-ci.org/trickstersio/swagger_hub_api_pusher.svg?branch=master)](https://travis-ci.org/trickstersio/swagger_hub_api_pusher)
 
 Provides rake task for pushing swagger.json to SwaggerHub API
 
