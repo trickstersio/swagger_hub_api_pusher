@@ -45,7 +45,7 @@ describe SwaggerHubApiPusher::Pusher do
         end
 
         it 'logs success message' do
-          expect { subject.execute }.to output("swagger.json was successfully posted\n").to_stdout
+          expect(subject.execute).to eq 'swagger.json was successfully posted'
         end
       end
 
@@ -55,7 +55,7 @@ describe SwaggerHubApiPusher::Pusher do
         end
 
         it 'logs error message' do
-          expect { subject.execute }.to output("error\n").to_stdout
+          expect(subject.execute).to eq 'error'
         end
       end
     end

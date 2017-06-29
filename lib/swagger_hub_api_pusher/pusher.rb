@@ -20,9 +20,9 @@ module SwaggerHubApiPusher
       end
 
       if SUCCESS_STATUSES.include?(response.code.to_i)
-        puts 'swagger.json was successfully posted'
+        'swagger.json was successfully posted'
       else
-        puts JSON.parse(response.body)['message']
+        JSON.parse(response.body)['message']
       end
     end
 
