@@ -4,7 +4,7 @@ require 'net/https'
 module SwaggerHubApiPusher
   class Pusher
     SUCCESS_STATUSES = [200, 201].freeze
-    BASE_URL = 'https://api.swaggerhub.com/apis/'.freeze
+    BASE_URL = 'https://api.swaggerhub.com/apis'.freeze
 
     def execute
       raise ArgumentError, config.errors_messages unless config.valid?
@@ -19,9 +19,7 @@ module SwaggerHubApiPusher
         http.request(request)
       end
 
-      if SUCCESS_STATUSES.include?(response.code.to_i)
-        'swagger.json was successfully posted'
-      else
+      unless SUCCESS_STATUSES.include?(response.code.to_i)
         JSON.parse(response.body)['message']
       end
     end

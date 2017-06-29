@@ -4,6 +4,7 @@ require 'swagger_hub_api_pusher'
 namespace :swagger do
   desc 'Push swagger json to SwaggerHub API'
   task push: :environment do
-    SwaggerHubApiPusher::Pusher.new.execute
+    response = SwaggerHubApiPusher::Pusher.new.execute
+    puts response unless response.nil?
   end
 end
