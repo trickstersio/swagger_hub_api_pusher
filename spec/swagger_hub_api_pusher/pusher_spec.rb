@@ -45,7 +45,7 @@ describe SwaggerHubApiPusher::Pusher do
         end
 
         it 'logs success message' do
-          expect(subject.execute).to eq 'swagger.json was successfully posted'
+          expect(subject.execute).to be_nil
         end
       end
 
