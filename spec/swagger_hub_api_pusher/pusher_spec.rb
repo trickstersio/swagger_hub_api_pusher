@@ -26,7 +26,7 @@ describe SwaggerHubApiPusher::Pusher do
         end
       end
 
-      let(:url) { '/owner/api_name?version=version' }
+      let(:url) { "#{SwaggerHubApiPusher::Pusher::BASE_URL}/owner/api_name?version=version" }
       let(:options) do
         {
           body: File.read('spec/fixtures/swagger.json'),
@@ -36,20 +36,12 @@ describe SwaggerHubApiPusher::Pusher do
           }
         }
       end
-      let(:successful_response) { double(success?: true) }
-      let(:failure_response) do
-        double(success?: false, body: { 'message' => 'error' }.to_json)
-      end
-
-      it 'posts swagger_file' do
-        expect(described_class::Client).to receive(:post)
-          .with(url, options).and_return(successful_response)
-        subject.execute
-      end
+      let(:successful_response) {{ status: 200, body: "", headers: {} }}
+      let(:failure_response) {{ status: 401, body: { 'message' => 'error' }.to_json }}
 
       context 'when response succeed' do
         before do
-          allow(described_class::Client).to receive(:post).and_return(successful_response)
+          stub_request(:post, url).with(options).to_return(successful_response)
         end
 
         it 'logs success message' do
@@ -59,7 +51,7 @@ describe SwaggerHubApiPusher::Pusher do
 
       context 'when response failed' do
         before do
-          allow(described_class::Client).to receive(:post).and_return(failure_response)
+          stub_request(:post, url).with(options).to_return(failure_response)
         end
 
         it 'logs error message' do

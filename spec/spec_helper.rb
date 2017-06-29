@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "swagger_hub_api_pusher"
 require "support/task_example_group"
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
