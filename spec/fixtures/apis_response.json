@@ -1,0 +1,42 @@
+{"name": "Default listing",
+ "description": "Default registry listing",
+ "url": "apis/tricksters/ClickMyPass",
+ "offset": 0,
+ "totalCount": 6,
+ "apis":
+  [{"name": "ClickMyPass REST API V1",
+    "description":
+     "This is a server implementation for ClickMyPass developed using Ruby / RoR 5. This server is supposed to be the center of your ClickMyPass universe. It provides everything that is needed to connect different ClickMyPass clients with each other, allow them to search for contacts, exchange encryption keys and securely share passwords.",
+    "tags": [],
+    "properties":
+     [{"type": "Swagger", "url": "https://api.swaggerhub.com/apis/tricksters/ClickMyPass/v1"},
+      {"type": "X-Version", "value": "v1"},
+      {"type": "X-Created", "value": "2017-06-02T11:12:50Z"},
+      {"type": "X-Modified", "value": "2017-06-21T10:15:29Z"},
+      {"type": "X-Published", "value": "true"},
+      {"type": "X-UserRole", "value": "OWNER"},
+      {"type": "X-Private", "value": "false"}]},
+   {"name": "ClickMyPass REST API V1",
+    "description":
+     "This is a server implementation for ClickMyPass developed using Ruby / RoR 5. This server is supposed to be the center of your ClickMyPass universe. It provides everything that is needed to connect different ClickMyPass clients with each other, allow them to search for contacts, exchange encryption keys and securely share passwords.",
+    "tags": [],
+    "properties":
+     [{"type": "Swagger", "url": "https://api.swaggerhub.com/apis/tricksters/ClickMyPass/v1.0.1"},
+      {"type": "X-Version", "value": "v1.0.1"},
+      {"type": "X-Created", "value": "2017-06-29T21:02:24Z"},
+      {"type": "X-Modified", "value": "2017-06-29T21:02:24Z"},
+      {"type": "X-Published", "value": "false"},
+      {"type": "X-UserRole", "value": "OWNER"},
+      {"type": "X-Private", "value": "false"}]},
+   {"name": "ClickMyPass REST API V1",
+    "description":
+     "This is a server implementation for ClickMyPass developed using Ruby / RoR 5. This server is supposed to be the center of your ClickMyPass universe. It provides everything that is needed to connect different ClickMyPass clients with each other, allow them to search for contacts, exchange encryption keys and securely share passwords.",
+    "tags": [],
+    "properties":
+     [{"type": "Swagger", "url": "https://api.swaggerhub.com/apis/tricksters/ClickMyPass/v1.0.2"},
+      {"type": "X-Version", "value": "v1.0.2"},
+      {"type": "X-Created", "value": "2017-06-29T21:24:25Z"},
+      {"type": "X-Modified", "value": "2017-06-29T21:24:25Z"},
+      {"type": "X-Published", "value": "true"},
+      {"type": "X-UserRole", "value": "OWNER"},
+      {"type": "X-Private", "value": "false"}]}]}
