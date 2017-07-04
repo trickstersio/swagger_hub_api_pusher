@@ -26,36 +26,87 @@ describe SwaggerHubApiPusher::Pusher do
         end
       end
 
-      let(:url) { "#{SwaggerHubApiPusher::Pusher::BASE_URL}/owner/api_name?version=version" }
-      let(:options) do
-        {
-          body: File.read('spec/fixtures/swagger.json'),
-          headers: {
-            'Content-Type' => 'application/json',
-            'Authorization' => 'api_key'
-          }
-        }
-      end
+      let(:get_api_version_url) { "#{SwaggerHubApiPusher::Pusher::BASE_URL}/owner/api_name/version/swagger.json" }
+      let(:post_api_url) { "#{SwaggerHubApiPusher::Pusher::BASE_URL}/owner/api_name?version=version" }
+      let(:options) {{ headers: { 'Content-Type' => 'application/json', 'Authorization' => 'api_key' } }}
+
+      let(:not_found_response) {{ status: 404, body: { 'message' => 'Not Found' }.to_json }}
       let(:successful_response) {{ status: 200, body: "", headers: {} }}
       let(:failure_response) {{ status: 401, body: { 'message' => 'error' }.to_json }}
 
-      context 'when response succeed' do
+      context 'when pushed version not found' do
         before do
-          stub_request(:post, url).with(options).to_return(successful_response)
+          stub_request(:get, get_api_version_url)
+            .with(options)
+            .to_return(not_found_response)
         end
 
-        it 'logs success message' do
+        context 'when pushing version succeed' do
+          before do
+            stub_request(:post, post_api_url)
+              .with(options.merge(body: File.read('spec/fixtures/swagger.json')))
+              .to_return(successful_response)
+          end
+
+          it 'returns nil' do
+            expect(subject.execute).to be_nil
+          end
+        end
+
+        context 'when pushing version failed' do
+          before do
+            stub_request(:post, post_api_url)
+              .with(options.merge(body: File.read('spec/fixtures/swagger.json')))
+              .to_return(failure_response)
+          end
+
+          it 'logs error message' do
+            expect(subject.execute).to eq 'error'
+          end
+        end
+      end
+
+      context 'when pushed version not changed' do
+        before do
+          stub_request(:get, get_api_version_url)
+            .with(options)
+            .to_return(successful_response.merge(body: File.read('spec/fixtures/swagger.json')))
+        end
+
+        it 'returns nil without pushing version' do
           expect(subject.execute).to be_nil
         end
       end
 
-      context 'when response failed' do
+      context 'when pushed version changed' do
         before do
-          stub_request(:post, url).with(options).to_return(failure_response)
+          stub_request(:get, get_api_version_url)
+            .with(options)
+            .to_return(successful_response.merge(body: { 'a' => 1 }.to_json))
         end
 
-        it 'logs error message' do
-          expect(subject.execute).to eq 'error'
+        context 'when pushing version succeed' do
+          before do
+            stub_request(:post, post_api_url)
+              .with(options.merge(body: File.read('spec/fixtures/swagger.json')))
+              .to_return(successful_response)
+          end
+
+          it 'returns nil' do
+            expect(subject.execute).to be_nil
+          end
+        end
+
+        context 'when pushing version failed' do
+          before do
+            stub_request(:post, post_api_url)
+              .with(options.merge(body: File.read('spec/fixtures/swagger.json')))
+              .to_return(failure_response)
+          end
+
+          it 'logs error message' do
+            expect(subject.execute).to eq 'error'
+          end
         end
       end
     end
