@@ -5,6 +5,6 @@ namespace :swagger do
   desc 'Push swagger json to SwaggerHub API'
   task push: :environment do
     response = SwaggerHubApiPusher::Pusher.new.execute
-    puts response unless response.nil?
+    abort response unless response.nil?
   end
 end
